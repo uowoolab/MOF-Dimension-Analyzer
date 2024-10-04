@@ -141,6 +141,9 @@ def analyse_structure(cif_path):
             result_collector.print_results()
             results.append((entry.identifier, dimension))
 
+            del result_collector
+            del entry
+    
     except Exception as e:
         error_message = str(e).strip()
         print(
@@ -191,7 +194,7 @@ def main():
                 for result in results:
                     writer.writerow(result)
                 csv_file.flush()
-
+                del futures[future]
 
 if __name__ == "__main__":
     main()
